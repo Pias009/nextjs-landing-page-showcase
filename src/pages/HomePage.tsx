@@ -21,9 +21,11 @@ import {
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { landingPages as allLandingPages } from '../data/landingPages';
+
 gsap.registerPlugin(ScrollTrigger);
 
-interface LandingPage {
+export interface LandingPage {
   id: string;
   name: string;
   type: string;
@@ -50,24 +52,14 @@ const categories = [
 ];
 
 const HomePage: React.FC = () => {
-  const [landingPages, setLandingPages] = useState<LandingPage[]>([]);
-  const [filteredPages, setFilteredPages] = useState<LandingPage[]>([]);
+  const [landingPages, setLandingPages] = useState<LandingPage[]>(allLandingPages);
+  const [filteredPages, setFilteredPages] = useState<LandingPage[]>(allLandingPages);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPage, setSelectedPage] = useState<LandingPage | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [previewMode, setPreviewMode] = useState<'mobile' | 'tablet' | 'desktop' | 'full'>('desktop');
   const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  useEffect(() => {
-    const storedPages = localStorage.getItem('landingPages');
-    if (storedPages) {
-      const pages = JSON.parse(storedPages);
-      setLandingPages(pages);
-      setFilteredPages(pages);
-    }
-    setIsLoading(false);
-  }, []);
 
   useEffect(() => {
     let filtered = landingPages;
