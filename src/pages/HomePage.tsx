@@ -284,12 +284,7 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             
-            <Link 
-              to="/admin" 
-              className="px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full font-medium text-white hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40"
-            >
-              Admin Panel
-            </Link>
+          
           </div>
         </div>
       </motion.nav>
